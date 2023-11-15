@@ -1,3 +1,4 @@
+import 'package:advanced_flutter/presentation/theme_manager.dart';
 import 'package:flutter/material.dart';
 
 class MyApp extends  StatefulWidget {
@@ -8,7 +9,7 @@ class MyApp extends  StatefulWidget {
   // named constructor
   const MyApp._internal();
 
-  static final MyApp _instance = MyApp._internal();
+  static const MyApp _instance = MyApp._internal();
 
   factory MyApp()  => _instance;
 
@@ -19,6 +20,8 @@ class MyApp extends  StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return MaterialApp(
+      theme: getApplicationTheme(),
+    );
   }
 }
