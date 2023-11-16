@@ -1,7 +1,8 @@
-import 'package:advanced_flutter/presentation/values_manager.dart';
 import 'package:flutter/material.dart';
-
 import 'color_manager.dart';
+import 'font_manager.dart';
+import 'style_manager.dart';
+import 'values_manager.dart';
 
 ThemeData getApplicationTheme() {
   return ThemeData(
@@ -10,6 +11,7 @@ ThemeData getApplicationTheme() {
       primaryColorLight: ColorManager.lightPrimary,
       primaryColorDark: ColorManager.darkPrimary,
       disabledColor: ColorManager.grey1,
+      splashColor: ColorManager.lightPrimary,  // ripple effect color
     // card view theme
       cardTheme: CardTheme(
           color: ColorManager.white,
@@ -18,6 +20,14 @@ ThemeData getApplicationTheme() {
       ),
 
     // app bar theme
+    appBarTheme: AppBarTheme(
+        centerTitle: true,
+        color: ColorManager.primary,
+        elevation: AppSize.s4,
+        shadowColor: ColorManager.lightPrimary,
+        titleTextStyle:
+        getRegularStyle(fontSize: FontSize.s16, color: ColorManager.white),
+    ),
 
     // button theme
 
