@@ -20,16 +20,33 @@ ThemeData getApplicationTheme() {
       ),
 
     // app bar theme
-    appBarTheme: AppBarTheme(
-        centerTitle: true,
-        color: ColorManager.primary,
-        elevation: AppSize.s4,
-        shadowColor: ColorManager.lightPrimary,
-        titleTextStyle:
-        getRegularStyle(fontSize: FontSize.s16, color: ColorManager.white),
-    ),
+      appBarTheme: AppBarTheme(
+          centerTitle: true,
+          color: ColorManager.primary,
+          elevation: AppSize.s4,
+          shadowColor: ColorManager.lightPrimary,
+          titleTextStyle:
+          getRegularStyle(fontSize: FontSize.s16, color: ColorManager.white),
+      ),
 
     // button theme
+      buttonTheme: ButtonThemeData(
+          shape: const StadiumBorder(),
+          disabledColor: ColorManager.grey1,
+          buttonColor: ColorManager.primary,
+          splashColor: ColorManager.lightPrimary),
+
+      // elevated button them
+        elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+                textStyle: getRegularStyle(
+                    color: ColorManager.white, fontSize: FontSize.s17),
+                backgroundColor: ColorManager.primary,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(AppSize.s12)
+                ),
+            ),
+        ),
 
     // text theme
 
