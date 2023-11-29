@@ -1,3 +1,4 @@
+import 'package:advanced_flutter/presentation/on_boarding/on_boarding_view.dart';
 import 'package:advanced_flutter/presentation/resources/stringes_manager.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +15,7 @@ class Routes
   static const loginRoute = "/login";
   static const registerRoute = "/register";
   static const forgotPasswordRoute = "/forgetPassword";
+  static const onBoardingRoute = "/onBoarding";
   static const mainRoute = "/main";
   static const storeDetailsRoute = "/storeDetails";
 }
@@ -29,6 +31,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const RegisterView());
       case Routes.forgotPasswordRoute:
         return MaterialPageRoute(builder: (_) => const ForgetPasswordView());
+      case Routes.onBoardingRoute:
+        return MaterialPageRoute(builder: (_)=> const OnBoardingView());
       case Routes.mainRoute:
         return MaterialPageRoute(builder: (_) => const MainView());
       case Routes.storeDetailsRoute:
