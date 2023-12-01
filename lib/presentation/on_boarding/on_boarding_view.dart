@@ -1,10 +1,13 @@
 import 'package:advanced_flutter/presentation/resources/assets_manager.dart';
 import 'package:advanced_flutter/presentation/resources/color_manager.dart';
+import 'package:advanced_flutter/presentation/resources/constants_manager.dart';
 import 'package:advanced_flutter/presentation/resources/strings_manager.dart';
 import 'package:advanced_flutter/presentation/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../resources/routes_manager.dart';
 
 class OnBoardingView extends StatefulWidget {
   const OnBoardingView({super.key});
@@ -74,7 +77,9 @@ class _OnBoardingViewState extends State<OnBoardingView> {
             Align(
               alignment: Alignment.centerRight,
               child: TextButton(
-                onPressed: (){},
+                onPressed: (){
+                  Navigator.pushReplacementNamed(context, Routes.loginRoute);
+                },
                 child :Text(
                   AppStrings.skip,
                   textAlign: TextAlign.end,
@@ -99,6 +104,13 @@ class _OnBoardingViewState extends State<OnBoardingView> {
         Padding(
           padding: const EdgeInsets.all(AppPadding.p14),
           child: GestureDetector(
+            onTap: (){
+              _pageController.animateToPage(
+                  _getPreviousIndex(),
+                  duration: const Duration(milliseconds: AppConstants.sliderAnimationTime),
+                  curve: Curves.bounceInOut
+              );
+            },
             child: SizedBox(
               width: AppSize.s20,
               height: AppSize.s20,
@@ -119,6 +131,13 @@ class _OnBoardingViewState extends State<OnBoardingView> {
         Padding(
           padding: const EdgeInsets.all(AppPadding.p14),
           child: GestureDetector(
+            onTap: (){
+              _pageController.animateToPage(
+                  _getNextIndex(),
+                  duration: const Duration(milliseconds: AppConstants.sliderAnimationTime),
+                  curve: Curves.bounceInOut
+              );
+            },
             child: SizedBox(
               width: AppSize.s20,
               height: AppSize.s20,
@@ -141,6 +160,27 @@ class _OnBoardingViewState extends State<OnBoardingView> {
     }
 
   }
+
+  int _getPreviousIndex()
+  {
+    int previousIndex= _currentIndex--;
+    if(previousIndex == -1)
+    {
+      previousIndex = _list.length-1;
+    }
+    return previousIndex;
+  }
+
+  int _getNextIndex()
+  {
+    int nextIndex= _currentIndex++;
+    if(nextIndex == _list.length)
+    {
+      nextIndex = 0;
+    }
+    return nextIndex;
+  }
+
 }
 
 // ignore: must_be_immutable
