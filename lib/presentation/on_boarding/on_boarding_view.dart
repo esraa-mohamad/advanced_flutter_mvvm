@@ -83,11 +83,63 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                   ),
                 ),
               ),
-            )
+            ),
+            getBottomSheetWidget(),
           ],
         ),
       ),
     );
+  }
+
+  Widget getBottomSheetWidget(){
+    return  Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children:
+      [
+        Padding(
+          padding: const EdgeInsets.all(AppPadding.p14),
+          child: GestureDetector(
+            child: SizedBox(
+              width: AppSize.s20,
+              height: AppSize.s20,
+              child: SvgPicture.asset(ImageAssets.leftArrowIc),
+            ),
+          ),
+        ),
+        Row(
+          children: [
+            for(int i = 0 ; i<_list.length ; i++)
+              Padding(
+                padding: const EdgeInsets.all(AppPadding.p8),
+                child: getProperCircle(i),
+              ),
+
+          ],
+        ),
+        Padding(
+          padding: const EdgeInsets.all(AppPadding.p14),
+          child: GestureDetector(
+            child: SizedBox(
+              width: AppSize.s20,
+              height: AppSize.s20,
+              child: SvgPicture.asset(ImageAssets.rightArrowIc),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget getProperCircle(int index)
+  {
+    if (index == _currentIndex)
+    {
+      return SvgPicture.asset(ImageAssets.hollowCircleIc);
+    }else
+    {
+      return SvgPicture.asset(ImageAssets.solidCircleIc);
+    }
+
   }
 }
 
