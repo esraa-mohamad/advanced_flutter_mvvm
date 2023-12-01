@@ -52,6 +52,8 @@ class _OnBoardingViewState extends State<OnBoardingView> {
     return  Scaffold(
       backgroundColor: ColorManager.white,
       appBar: AppBar(
+        backgroundColor: ColorManager.white,
+        elevation: AppSize.s0,
         systemOverlayStyle: SystemUiOverlayStyle(
           statusBarColor: ColorManager.white,
           statusBarBrightness: Brightness.dark,
@@ -71,8 +73,8 @@ class _OnBoardingViewState extends State<OnBoardingView> {
       ),
       bottomSheet: Container(
         color: ColorManager.white,
-        height: AppSize.s100,
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             Align(
               alignment: Alignment.centerRight,
@@ -83,9 +85,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                 child :Text(
                   AppStrings.skip,
                   textAlign: TextAlign.end,
-                  style: TextStyle(
-                    color: ColorManager.primary,
-                  ),
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
               ),
             ),
@@ -98,55 +98,58 @@ class _OnBoardingViewState extends State<OnBoardingView> {
 
 
   Widget getBottomSheetWidget(){
-    return  Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children:
-      [
-        Padding(
-          padding: const EdgeInsets.all(AppPadding.p14),
-          child: GestureDetector(
-            onTap: (){
-              _pageController.animateToPage(
-                  _getPreviousIndex(),
-                  duration: const Duration(milliseconds: AppConstants.sliderAnimationTime),
-                  curve: Curves.bounceInOut
-              );
-            },
-            child: SizedBox(
-              width: AppSize.s20,
-              height: AppSize.s20,
-              child: SvgPicture.asset(ImageAssets.leftArrowIc),
-            ),
-          ),
-        ),
-        Row(
-          children: [
-            for(int i = 0 ; i<_list.length ; i++)
-              Padding(
-                padding: const EdgeInsets.all(AppPadding.p8),
-                child: getProperCircle(i),
+    return  Container(
+      color: ColorManager.primary,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children:
+        [
+          Padding(
+            padding: const EdgeInsets.all(AppPadding.p14),
+            child: GestureDetector(
+              onTap: (){
+                _pageController.animateToPage(
+                    _getPreviousIndex(),
+                    duration: const Duration(milliseconds: AppConstants.sliderAnimationTime),
+                    curve: Curves.bounceInOut
+                );
+              },
+              child: SizedBox(
+                width: AppSize.s20,
+                height: AppSize.s20,
+                child: SvgPicture.asset(ImageAssets.leftArrowIc),
               ),
-
-          ],
-        ),
-        Padding(
-          padding: const EdgeInsets.all(AppPadding.p14),
-          child: GestureDetector(
-            onTap: (){
-              _pageController.animateToPage(
-                  _getNextIndex(),
-                  duration: const Duration(milliseconds: AppConstants.sliderAnimationTime),
-                  curve: Curves.bounceInOut
-              );
-            },
-            child: SizedBox(
-              width: AppSize.s20,
-              height: AppSize.s20,
-              child: SvgPicture.asset(ImageAssets.rightArrowIc),
             ),
           ),
-        ),
-      ],
+          Row(
+            children: [
+              for(int i = 0 ; i<_list.length ; i++)
+                Padding(
+                  padding: const EdgeInsets.all(AppPadding.p8),
+                  child: getProperCircle(i),
+                ),
+
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.all(AppPadding.p14),
+            child: GestureDetector(
+              onTap: (){
+                _pageController.animateToPage(
+                    _getNextIndex(),
+                    duration: const Duration(milliseconds: AppConstants.sliderAnimationTime),
+                    curve: Curves.bounceInOut
+                );
+              },
+              child: SizedBox(
+                width: AppSize.s20,
+                height: AppSize.s20,
+                child: SvgPicture.asset(ImageAssets.rightArrowIc),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -164,7 +167,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
 
   int _getPreviousIndex()
   {
-    int previousIndex= _currentIndex--;
+    int previousIndex= --_currentIndex;
     if(previousIndex == -1)
     {
       previousIndex = _list.length-1;
@@ -174,7 +177,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
 
   int _getNextIndex()
   {
-    int nextIndex= _currentIndex++;
+    int nextIndex= ++_currentIndex;
     if(nextIndex == _list.length)
     {
       nextIndex = 0;
