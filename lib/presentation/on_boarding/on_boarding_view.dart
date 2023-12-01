@@ -96,6 +96,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
     );
   }
 
+
   Widget getBottomSheetWidget(){
     return  Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
