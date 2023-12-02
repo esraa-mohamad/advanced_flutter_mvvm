@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../domain/model.dart';
 import '../../resources/routes_manager.dart';
 
 class OnBoardingView extends StatefulWidget {
@@ -227,15 +228,3 @@ class OnBoardingPage extends StatelessWidget {
 }
 
 
-class SliderObject
-{
-  String title;
-  String subTitle;
-  String image ;
-
-  SliderObject({
-    required this.title,
-    required this.subTitle,
-    required this.image,
-  });
-}
