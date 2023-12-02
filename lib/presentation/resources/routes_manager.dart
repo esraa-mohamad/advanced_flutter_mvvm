@@ -1,4 +1,4 @@
-import 'package:advanced_flutter/presentation/on_boarding/on_boarding_view.dart';
+import 'package:advanced_flutter/presentation/on_boarding/view/on_boarding_view.dart';
 import 'package:advanced_flutter/presentation/resources/strings_manager.dart';
 import 'package:flutter/material.dart';
 
