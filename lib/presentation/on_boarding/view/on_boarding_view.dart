@@ -22,7 +22,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
 
   final PageController _pageController =PageController();
 
-  OnBoardingViewModel _onBoardingViewModel= OnBoardingViewModel();
+  final OnBoardingViewModel _onBoardingViewModel= OnBoardingViewModel();
 
   // that is mean , relate
   _bind() {
