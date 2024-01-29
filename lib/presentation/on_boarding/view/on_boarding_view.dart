@@ -19,34 +19,10 @@ class OnBoardingView extends StatefulWidget {
 
 class _OnBoardingViewState extends State<OnBoardingView> {
 
-  late final List<SliderObject> _list = _getSliderData();
 
-  List<SliderObject> _getSliderData () =>[
-    SliderObject(
-        title: AppStrings.onBoardingTitle1,
-        subTitle: AppStrings.onBoardingSubTitle1,
-        image: ImageAssets.onBoardingLogo1,
-    ),
-    SliderObject(
-        title: AppStrings.onBoardingTitle2,
-        subTitle: AppStrings.onBoardingSubTitle2,
-        image: ImageAssets.onBoardingLogo2,
-    ),
-    SliderObject(
-        title: AppStrings.onBoardingTitle3,
-        subTitle: AppStrings.onBoardingSubTitle3,
-        image: ImageAssets.onBoardingLogo3,
-    ),
-    SliderObject(
-        title: AppStrings.onBoardingTitle4,
-        subTitle: AppStrings.onBoardingSubTitle4,
-        image: ImageAssets.onBoardingLogo4,
-    ),
-  ];
 
   final PageController _pageController =PageController();
 
-  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +66,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                 ),
               ),
             ),
-            getBottomSheetWidget(),
+            _getBottomSheetWidget(),
           ],
         ),
       ),
@@ -98,7 +74,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
   }
 
 
-  Widget getBottomSheetWidget(){
+  Widget _getBottomSheetWidget(){
     return  Container(
       color: ColorManager.primary,
       child: Row(
@@ -127,7 +103,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
               for(int i = 0 ; i<_list.length ; i++)
                 Padding(
                   padding: const EdgeInsets.all(AppPadding.p8),
-                  child: getProperCircle(i),
+                  child: _getProperCircle(i),
                 ),
 
             ],
@@ -154,7 +130,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
     );
   }
 
-  Widget getProperCircle(int index)
+  Widget _getProperCircle(int index)
   {
     if (index == _currentIndex)
     {
@@ -163,7 +139,12 @@ class _OnBoardingViewState extends State<OnBoardingView> {
     {
       return SvgPicture.asset(ImageAssets.solidCircleIc);
     }
+  }
 
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
   }
 
   int _getPreviousIndex()

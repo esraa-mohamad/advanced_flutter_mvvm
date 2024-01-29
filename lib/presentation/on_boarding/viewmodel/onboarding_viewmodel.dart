@@ -1,25 +1,33 @@
 
 import 'dart:async';
+import 'dart:ffi';
 
 import 'package:advanced_flutter/domain/model.dart';
 import 'package:advanced_flutter/presentation/base/base_view_model.dart';
 
+import '../../resources/assets_manager.dart';
+import '../../resources/strings_manager.dart';
+
 class OnBoardingViewModel extends BaseViewModel
     with OnBoardingViewModelInputs,OnBoardingViewModelOutputs
 {
-  StreamController _streamController =StreamController<SliderViewObject>();
+  final StreamController _streamController =StreamController<SliderViewObject>();
 
+  late final List<SliderObject> _list;
 
+  final int _currentIndex = 0;
 
   // onboarding base view model inputs
   @override
   void dispose() {
-    // TODO: implement dispose
+    _streamController.close();
   }
 
   @override
   void start() {
     // TODO: implement start
+    _list = _getSliderData();
+    _postDataToView();
   }
 
   @override
@@ -38,13 +46,47 @@ class OnBoardingViewModel extends BaseViewModel
   }
 
   @override
-  // TODO: implement inputSliderViewObject
-  Sink get inputSliderViewObject => throw UnimplementedError();
+  Sink get inputSliderViewObject => _streamController.sink;
 
   // stream controllers for output
   @override
   // TODO: implement outputSliderViewObject
-  Stream get outputSliderViewObject => throw UnimplementedError();
+  Stream<SliderViewObject> get outputSliderViewObject => _streamController.stream.map((sliderViewObject) => sliderViewObject);
+
+  // onboarding private function
+  List<SliderObject> _getSliderData () =>[
+    SliderObject(
+      title: AppStrings.onBoardingTitle1,
+      subTitle: AppStrings.onBoardingSubTitle1,
+      image: ImageAssets.onBoardingLogo1,
+    ),
+    SliderObject(
+      title: AppStrings.onBoardingTitle2,
+      subTitle: AppStrings.onBoardingSubTitle2,
+      image: ImageAssets.onBoardingLogo2,
+    ),
+    SliderObject(
+      title: AppStrings.onBoardingTitle3,
+      subTitle: AppStrings.onBoardingSubTitle3,
+      image: ImageAssets.onBoardingLogo3,
+    ),
+    SliderObject(
+      title: AppStrings.onBoardingTitle4,
+      subTitle: AppStrings.onBoardingSubTitle4,
+      image: ImageAssets.onBoardingLogo4,
+    ),
+  ];
+
+  void _postDataToView()
+  {
+    inputSliderViewObject.add(SliderViewObject(
+      _list[_currentIndex],
+        _list.length,
+        _currentIndex,
+    ));
+  }
+
+
 }
 
 // inputs mean that "orders" that our view model will receive from view
@@ -59,7 +101,7 @@ mixin OnBoardingViewModelInputs{
 
 mixin OnBoardingViewModelOutputs{
 
-  Stream get outputSliderViewObject;
+  Stream<SliderViewObject> get outputSliderViewObject;
 }
 
 
