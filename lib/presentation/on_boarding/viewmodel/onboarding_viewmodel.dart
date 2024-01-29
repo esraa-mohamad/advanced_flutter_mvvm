@@ -1,6 +1,4 @@
-
 import 'dart:async';
-import 'dart:ffi';
 
 import 'package:advanced_flutter/domain/model.dart';
 import 'package:advanced_flutter/presentation/base/base_view_model.dart';
@@ -15,7 +13,7 @@ class OnBoardingViewModel extends BaseViewModel
 
   late final List<SliderObject> _list;
 
-  final int _currentIndex = 0;
+  int _currentIndex = 0;
 
   // onboarding base view model inputs
   @override
@@ -31,18 +29,29 @@ class OnBoardingViewModel extends BaseViewModel
   }
 
   @override
-  void goNext() {
-    // TODO: implement goNext
+  int goNext() {
+    int nextIndex= ++_currentIndex;
+    if(nextIndex == _list.length)
+    {
+      nextIndex = 0;
+    }
+    return nextIndex;
   }
 
   @override
-  void goPrevious() {
-    // TODO: implement goPrevious
+  int goPrevious() {
+    int previousIndex= --_currentIndex;
+    if(previousIndex == -1)
+    {
+      previousIndex = _list.length-1;
+    }
+    return previousIndex;
   }
 
   @override
   void onPageChanged(int index) {
-    // TODO: implement onPageChanged
+    _currentIndex= index ;
+    _postDataToView();
   }
 
   @override
@@ -91,8 +100,8 @@ class OnBoardingViewModel extends BaseViewModel
 
 // inputs mean that "orders" that our view model will receive from view
 mixin OnBoardingViewModelInputs{
-  void goNext(); // when user click on right arrow or swipe left
-  void goPrevious(); // when user click on left arrow or swipe right
+  int goNext(); // when user click on right arrow or swipe left
+  int goPrevious(); // when user click on left arrow or swipe right
   void onPageChanged (int index);
 
   // stream controller input
