@@ -1,13 +1,16 @@
-import 'package:advanced_flutter/presentation/on_boarding/view/on_boarding_view.dart';
+
 import 'package:advanced_flutter/presentation/resources/strings_manager.dart';
 import 'package:flutter/material.dart';
 
-import '../forget_password/forget_password_view.dart';
-import '../login/login_view.dart';
-import '../main/main_view.dart';
-import '../register/register_view.dart';
-import '../splash/splash_view.dart';
-import '../store_details/store_details_view.dart';
+import '../screens/forget_password/forget_password_view.dart';
+import '../screens/login/login_view.dart';
+import '../screens/main/main_view.dart';
+import '../screens/on_boarding/view/on_boarding_view.dart';
+import '../screens/register/register_view.dart';
+import '../screens/splash/splash_view.dart';
+import '../screens/store_details/store_details_view.dart';
+
+
 
 class Routes
 {
