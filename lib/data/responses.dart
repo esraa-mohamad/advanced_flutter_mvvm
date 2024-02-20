@@ -1,4 +1,6 @@
+// ignore: depend_on_referenced_packages
 import 'package:json_annotation/json_annotation.dart';
+part 'responses.g.dart';
 
 @JsonSerializable()
 class BaseResponse {
@@ -6,6 +8,7 @@ class BaseResponse {
   int ? status ;
   @JsonKey(name: "message")
   String ? message ;
+
 }
 
 @JsonSerializable()
@@ -16,6 +19,16 @@ class CustomerResponse {
   String ? name ;
   @JsonKey(name :"numberOfNotifications")
   int ? numberOfNotifications ;
+  
+  CustomerResponse({required this.id , required this.name , required this.numberOfNotifications});
+
+  //  from json
+  factory CustomerResponse.fromJson(Map<String,dynamic> json) =>
+      _$CustomerResponseFromJson(json);
+
+  // to json
+  Map<String,dynamic> toJson() =>
+      _$CustomerResponseToJson(this);
 }
 
 @JsonSerializable()
@@ -26,6 +39,16 @@ class ContactResponse {
   String ? email ;
   @JsonKey(name :"link")
   String ? link ;
+
+  ContactResponse({required this.email , required this.link ,  required this.phone});
+
+  //  from json
+  factory ContactResponse.fromJson(Map<String,dynamic> json) =>
+      _$ContactResponseFromJson(json);
+
+  // to json
+  Map<String,dynamic> toJson() =>
+      _$ContactResponseToJson(this);
 }
 
 @JsonSerializable()
@@ -34,4 +57,15 @@ class AuthenticationResponse extends BaseResponse{
   CustomerResponse ? customer ;
   @JsonKey(name: "contacts")
   ContactResponse ? contacts ;
+  
+  AuthenticationResponse({required this.contacts , required this.customer ,});
+
+  //  from json
+  factory AuthenticationResponse.fromJson(Map<String,dynamic> json) =>
+      _$AuthenticationResponseFromJson(json);
+
+  // to json
+  Map<String,dynamic> toJson() =>
+      _$AuthenticationResponseToJson(this);
 }
+
