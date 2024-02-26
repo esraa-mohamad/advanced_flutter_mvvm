@@ -1,5 +1,6 @@
 import 'package:advanced_flutter/data/data_source/remote_data_source.dart';
 import 'package:advanced_flutter/data/mapper/mapper.dart';
+import 'package:advanced_flutter/data/network/error_handler.dart';
 import 'package:advanced_flutter/data/network/failure.dart';
 import 'package:advanced_flutter/data/network/network_info.dart';
 import 'package:advanced_flutter/data/network/requests.dart';
@@ -17,28 +18,29 @@ class RepositoryImpl implements Repository{
   Future<Either<Failure, Authentication>> login(LoginRequests loginRequests) async {
 
     if(await _networkInfo.isConnected){
-      // its connected to internet , its safe to call API
-      final response = await _remoteDataSource.login(loginRequests);
-      if(response.status == 0){
-        // success
-        // either right
-        // return data
-        return Right(response.toDomain());
-      }else{
-        // failure
-        // either left
-        //return business error
-        return Left(Failure(
-            code:  409 ,
-            message: response.message ?? "Business Error message"
-        ));
+
+      try {
+        final response = await _remoteDataSource.login(loginRequests);
+        if(response.status == ApiInternalStatus.SUCCESS){
+          // success
+          // either right
+          // return data
+          return Right(response.toDomain());
+        }else{
+          // failure
+          // either left
+          //return business error
+          return Left(Failure(
+              code:  ApiInternalStatus.Failure ,
+              message: response.message ?? ResponseMessage.DEFAULT
+          ));
+        }
+      }catch(error) {
+        return Left(ErrorHandler.handle(error).failure);
       }
     }else{
       // return internet connected error
-      return Left(Failure(
-          code:  501 ,
-          message:"Check your internet connection "
-      ));
+      return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
     }
   }
 
