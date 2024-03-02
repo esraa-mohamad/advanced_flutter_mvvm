@@ -9,6 +9,9 @@ LoginViewModelInput , LoginViewModelOutput
   final StreamController _userNameStreamController = StreamController<String>.broadcast();
   final StreamController _passwordStreamController = StreamController<String>.broadcast();
 
+  // object have last login
+  //var loginObject = LoginObject("" , "");
+
   // inputs **********************
   @override
   void dispose() {
@@ -30,14 +33,12 @@ LoginViewModelInput , LoginViewModelOutput
 
   @override
   setPassword(String password) {
-    // TODO: implement setPassword
-    throw UnimplementedError();
+    inputPassword.add(password);
   }
 
   @override
   setUserName(String userName) {
-    // TODO: implement setUserName
-    throw UnimplementedError();
+    inputUserName.add(userName);
   }
 
   @override
