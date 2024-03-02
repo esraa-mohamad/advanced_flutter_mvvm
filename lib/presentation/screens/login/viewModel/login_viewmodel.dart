@@ -1,13 +1,19 @@
+import 'dart:async';
+
 import 'package:advanced_flutter/presentation/base/base_view_model.dart';
 
 class LoginViewModel extends BaseViewModel with 
 LoginViewModelInput , LoginViewModelOutput
 {
 
+  final StreamController _userNameStreamController = StreamController<String>.broadcast();
+  final StreamController _passwordStreamController = StreamController<String>.broadcast();
+
   // inputs **********************
   @override
   void dispose() {
-    // TODO: implement dispose
+    _userNameStreamController.close();
+    _passwordStreamController.close();
   }
 
   @override
@@ -21,11 +27,6 @@ LoginViewModelInput , LoginViewModelOutput
     throw UnimplementedError();
   }
 
-  @override
-  Sink password() {
-    // TODO: implement password
-    throw UnimplementedError();
-  }
 
   @override
   setPassword(String password) {
@@ -40,25 +41,28 @@ LoginViewModelInput , LoginViewModelOutput
   }
 
   @override
-  Sink userName() {
-    // TODO: implement userName
-    throw UnimplementedError();
-  }
-
-  // outputs *******************
-  @override
-  Stream<bool> outIsPasswordValid() {
-    // TODO: implement outIsPasswordValid
-    throw UnimplementedError();
-  }
+  Sink get inputPassword => _passwordStreamController.sink;
 
   @override
-  Stream<bool> outIsUserNameValid() {
-    // TODO: implement outIsUserNameValid
-    throw UnimplementedError();
+  Sink get inputUserName => _userNameStreamController.sink;
+
+
+  // outputs ********************
+  @override
+  Stream<bool> get outIsPasswordValid => _passwordStreamController.stream
+      .map((password) => _isPasswordValid(password));
+
+  @override
+  Stream<bool> get outIsUserNameValid => _userNameStreamController.stream
+      .map((username) => _isUserNameValid(username));
+
+  bool _isPasswordValid(String password){
+    return password.isNotEmpty ;
   }
 
-
+  bool _isUserNameValid(String username){
+    return username.isNotEmpty ;
+  }
 
 }
 
@@ -67,12 +71,12 @@ mixin LoginViewModelInput {
   setPassword(String password);
   login();
 
-  Sink userName();
-  Sink password();
+  Sink get inputUserName;
+  Sink get inputPassword;
 
 }
 
 mixin LoginViewModelOutput {
-  Stream<bool> outIsUserNameValid();
-  Stream<bool> outIsPasswordValid();
+  Stream<bool> get outIsUserNameValid;
+  Stream<bool> get outIsPasswordValid;
 }
