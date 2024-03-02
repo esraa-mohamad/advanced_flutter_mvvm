@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:advanced_flutter/domain/usecase/login_usecase.dart';
 import 'package:advanced_flutter/presentation/base/base_view_model.dart';
 
 import '../../../common/freezed_data_class.dart';
@@ -14,6 +15,9 @@ LoginViewModelInput , LoginViewModelOutput
   // object have last login
   var loginObject = LoginObject("" , "");
 
+  LoginUseCase _loginUseCase;
+  LoginViewModel(this._loginUseCase);
+
   // inputs **********************
   @override
   void dispose() {
@@ -27,9 +31,17 @@ LoginViewModelInput , LoginViewModelOutput
   }
 
   @override
-  login() {
-    // TODO: implement login
-    throw UnimplementedError();
+  login() async{
+    (await _loginUseCase.execute(LoginUseCaseInput(
+        email: loginObject.username,
+        password: loginObject.password)))
+        .fold((left) => {
+          // left -> failure
+        },
+        (data) => {
+          // right -> data (success)
+        });
+
   }
 
 
