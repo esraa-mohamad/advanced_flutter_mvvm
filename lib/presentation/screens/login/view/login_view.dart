@@ -14,7 +14,7 @@ class LoginView extends StatefulWidget {
 
 class _LoginViewState extends State<LoginView> {
 
-  late final LoginViewModel _loginViewModel;
+  final LoginViewModel _loginViewModel = LoginViewModel();
 
   final _formKey = GlobalKey<FormState>();
 
@@ -35,7 +35,7 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return _getContentView();
   }
 
   Widget _getContentView (){
@@ -95,6 +95,25 @@ class _LoginViewState extends State<LoginView> {
                               : AppStrings.passwordError,
 
                         ),
+                      );
+                    },
+                  ),
+                ),
+                const SizedBox(
+                  height: AppSize.s30,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: AppPadding.p28 , right: AppPadding.p28),
+                  child: StreamBuilder<bool>(
+                    stream: _loginViewModel.outAreAllInputValid,
+                    builder: (context , snapshot){
+                      return ElevatedButton(
+                          onPressed: (snapshot.data ?? false)
+                              ?(){_loginViewModel.login();}
+                              : null,
+                          child: const Text(
+                            AppStrings.login,
+                          ),
                       );
                     },
                   ),
