@@ -16,9 +16,9 @@ LoginViewModelInput , LoginViewModelOutput
   // object have last login
   var loginObject = LoginObject("" , "");
 
-  //final LoginUseCase _loginUseCase;
-  //LoginViewModel(this._loginUseCase);
-  LoginViewModel();
+  final LoginUseCase _loginUseCase;
+  LoginViewModel(this._loginUseCase);
+  //LoginViewModel();
 
   // inputs **********************
   @override
@@ -35,15 +35,15 @@ LoginViewModelInput , LoginViewModelOutput
 
   @override
   login() async{
-    // (await _loginUseCase.execute(LoginUseCaseInput(
-    //     email: loginObject.username,
-    //     password: loginObject.password)))
-    //     .fold((left) => {
-    //       // left -> failure
-    //     },
-    //     (data) => {
-    //       // right -> data (success)
-    //     });
+    (await _loginUseCase.execute(LoginUseCaseInput(
+        email: loginObject.username,
+        password: loginObject.password)))
+        .fold((left) => {
+          // left -> failure
+        },
+        (data) => {
+          // right -> data (success)
+        });
 
   }
 

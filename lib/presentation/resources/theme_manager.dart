@@ -38,16 +38,15 @@ ThemeData getApplicationTheme() {
           splashColor: ColorManager.lightPrimary),
 
       // elevated button them
-        elevatedButtonTheme: ElevatedButtonThemeData(
-            style: ElevatedButton.styleFrom(
-                textStyle: getRegularStyle(
-                    color: ColorManager.white, fontSize: FontSize.s17),
-                backgroundColor: ColorManager.primary,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(AppSize.s12)
-                ),
-            ),
-        ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+              textStyle: getRegularStyle(color: ColorManager.white,fontSize: FontSize.s17),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(AppSize.s12)
+              ),
+              backgroundColor: ColorManager.primary
+          ),
+      ),
 
     // text theme
       textTheme: TextTheme(
