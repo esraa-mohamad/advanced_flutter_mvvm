@@ -5,6 +5,8 @@ import 'package:advanced_flutter/data/network/dio_factory.dart';
 import 'package:advanced_flutter/data/network/network_info.dart';
 import 'package:advanced_flutter/data/repository/repository_impl.dart';
 import 'package:advanced_flutter/domain/repository/repository.dart';
+import 'package:advanced_flutter/domain/usecase/login_usecase.dart';
+import 'package:advanced_flutter/presentation/screens/login/viewModel/login_viewModel.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -15,6 +17,7 @@ final instance =GetIt.instance;
 Future<void> initAppModule() async{
   // app module , its a module where we put all generic dependencies
 
+  // register lazy single tone بيفضل محتفظ ب الانستانس الي سجلته فيه علي مدار الابب
   // shared preferences instance
   final sharedPrefs = await SharedPreferences.getInstance();
 
@@ -47,6 +50,16 @@ Future<void> initAppModule() async{
           () => RepositoryImpl(instance<RemoteDataSource>(), instance<NetworkInfo>()));
 }
 
-Future<void> loginModule() async{
+initLoginModule() {
+
+  // instance for once within login
+  // register factory
+  if(!GetIt.I.isRegistered<LoginUseCase>()){
+    // login use case
+    instance.registerFactory<LoginUseCase>(() => LoginUseCase(instance()));
+
+    // login view model
+    instance.registerFactory<LoginViewModel>(() => LoginViewModel(instance()));
+  }
 
 }

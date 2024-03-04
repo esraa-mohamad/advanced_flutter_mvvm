@@ -1,3 +1,4 @@
+import 'package:advanced_flutter/app/di.dart';
 import 'package:advanced_flutter/presentation/resources/color_manager.dart';
 import 'package:advanced_flutter/presentation/resources/routes_manager.dart';
 import 'package:advanced_flutter/presentation/resources/values_manager.dart';
@@ -15,7 +16,7 @@ class LoginView extends StatefulWidget {
 
 class _LoginViewState extends State<LoginView> {
 
-  final LoginViewModel _loginViewModel = LoginViewModel();
+  final LoginViewModel _loginViewModel = instance<LoginViewModel>();
 
   final _formKey = GlobalKey<FormState>();
 
