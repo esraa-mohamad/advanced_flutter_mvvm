@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:advanced_flutter/domain/usecase/login_usecase.dart';
 import 'package:advanced_flutter/presentation/base/base_view_model.dart';
+import 'package:advanced_flutter/presentation/common/state_render/state_renderer_imp.dart';
+import 'package:advanced_flutter/presentation/common/state_render/state_render.dart';
 
 import '../../../common/freezed_data_class.dart';
 
@@ -23,6 +25,7 @@ LoginViewModelInput , LoginViewModelOutput
   // inputs **********************
   @override
   void dispose() {
+    super.dispose();
     _userNameStreamController.close();
     _passwordStreamController.close();
     _outAllInputValidStreamController.close();
@@ -30,19 +33,21 @@ LoginViewModelInput , LoginViewModelOutput
 
   @override
   void start() {
-    // TODO: implement start
+    // view model should tell view please show loading state
+    inputState.add(ContentState());
   }
 
   @override
   login() async{
+    inputState.add(LoadingState(stateRendererType: StateRendererType.popupLoadingState));
     (await _loginUseCase.execute(LoginUseCaseInput(
         email: loginObject.username,
         password: loginObject.password)))
-        .fold((left) => {
-          // left -> failure
+        .fold((failure) => {
+          inputState.add(ErrorState(StateRendererType.popupErrorState, failure.message))
         },
         (data) => {
-          // right -> data (success)
+          inputState.add(ContentState())
         });
 
   }

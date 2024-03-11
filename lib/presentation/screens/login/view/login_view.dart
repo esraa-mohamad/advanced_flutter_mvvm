@@ -1,4 +1,5 @@
 import 'package:advanced_flutter/app/di.dart';
+import 'package:advanced_flutter/presentation/common/state_render/state_renderer_imp.dart';
 import 'package:advanced_flutter/presentation/resources/color_manager.dart';
 import 'package:advanced_flutter/presentation/resources/routes_manager.dart';
 import 'package:advanced_flutter/presentation/resources/values_manager.dart';
@@ -37,16 +38,25 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
-    return _getContentView();
+    return Scaffold(
+      backgroundColor: ColorManager.white,
+      body: StreamBuilder<FlowState>(
+        stream: _loginViewModel.outState,
+        builder: (context , snapshot){
+          return snapshot.data?.getScreenWidget(context , _getContentView(), (){
+            _loginViewModel.login();
+          }) ??
+          _getContentView() ;
+        },
+      ),
+    );
   }
 
   Widget _getContentView (){
-    return Scaffold(
-      backgroundColor: ColorManager.white,
-      body: Container(
-        padding: const EdgeInsets.only(top: AppPadding.p100),
-        child: SingleChildScrollView(
-          child: Form(
+    return Container(
+      padding: const EdgeInsets.only(top: AppPadding.p100),
+      child: SingleChildScrollView(
+        child: Form(
             key: _formKey,
             child:   Column(
               children: [
@@ -61,21 +71,21 @@ class _LoginViewState extends State<LoginView> {
                 Padding(
                   padding: const EdgeInsets.only(left: AppPadding.p28 , right: AppPadding.p28),
                   child: StreamBuilder<bool>(
-                      stream: _loginViewModel.outIsUserNameValid,
-                      builder: (context , snapshot){
-                        return TextFormField(
-                          keyboardType:  TextInputType.emailAddress,
-                          controller: _userNameController,
-                          decoration: InputDecoration(
-                            hintText: AppStrings.username,
-                            labelText: AppStrings.username ,
-                            errorText: (snapshot.data ?? true)
-                                ? null
-                                : AppStrings.usernameError,
+                    stream: _loginViewModel.outIsUserNameValid,
+                    builder: (context , snapshot){
+                      return TextFormField(
+                        keyboardType:  TextInputType.emailAddress,
+                        controller: _userNameController,
+                        decoration: InputDecoration(
+                          hintText: AppStrings.username,
+                          labelText: AppStrings.username ,
+                          errorText: (snapshot.data ?? true)
+                              ? null
+                              : AppStrings.usernameError,
 
-                          ),
-                        );
-                      },
+                        ),
+                      );
+                    },
                   ),
                 ),
                 const SizedBox(
@@ -113,23 +123,23 @@ class _LoginViewState extends State<LoginView> {
                         width: double.infinity,
                         height: AppSize.s40,
                         child: ElevatedButton(
-                            onPressed: (snapshot.data ?? false)
-                                ?(){_loginViewModel.login();}
-                                : null,
-                            child: const Text(
-                              AppStrings.login,
-                            ),
+                          onPressed: (snapshot.data ?? false)
+                              ?(){_loginViewModel.login();}
+                              : null,
+                          child: const Text(
+                            AppStrings.login,
+                          ),
                         ),
                       );
                     },
                   ),
                 ),
-                 Padding(
+                Padding(
                   padding: const EdgeInsets.only(
-                    top: AppPadding.p8,
-                    left: AppPadding.p28,
-                    right: AppPadding.p28
-                    ),
+                      top: AppPadding.p8,
+                      left: AppPadding.p28,
+                      right: AppPadding.p28
+                  ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -156,7 +166,6 @@ class _LoginViewState extends State<LoginView> {
                 ),
               ],
             )
-          ),
         ),
       ),
     );
