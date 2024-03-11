@@ -1,7 +1,6 @@
 import 'package:advanced_flutter/app/constants.dart';
 import 'package:advanced_flutter/presentation/common/state_render/state_render.dart';
 import 'package:advanced_flutter/presentation/resources/strings_manager.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 abstract class FlowState{
@@ -77,7 +76,12 @@ class EmptyState extends FlowState{
 }
 
 extension FlowStateExtension on FlowState{
-  Widget getScreenWidget(BuildContext context , Widget contentScreenWidget , Function retryActionFunction){
+  Widget getScreenWidget(
+      BuildContext context ,
+      Widget contentScreenWidget ,
+      Function retryActionFunction
+      )
+  {
     switch(runtimeType){
 
       case LoadingState:
@@ -99,6 +103,7 @@ extension FlowStateExtension on FlowState{
 
       case ErrorState:
         {
+          dismissDialog(context);
           if(getStateRenderer()== StateRendererType.popupErrorState){
             // show popup loading
             // show content ui of screen
@@ -125,13 +130,24 @@ extension FlowStateExtension on FlowState{
 
       case ContentState:
         {
+          dismissDialog(context);
           return contentScreenWidget;
         }
 
       default :
         {
+          dismissDialog(context);
           return contentScreenWidget;
         }
+    }
+  }
+
+  _isCurrentDialogShowing(BuildContext context)
+  => ModalRoute.of(context)!.isCurrent != true;
+
+  dismissDialog(BuildContext context){
+    if(_isCurrentDialogShowing(context)){
+      Navigator.of(context , rootNavigator: true).pop(true);
     }
   }
 
