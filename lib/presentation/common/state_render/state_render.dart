@@ -116,14 +116,6 @@ class StateRenderer extends StatelessWidget {
     );
   }
 
-  Widget _getItemColumns(List<Widget> children){
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: children,
-    );
-  }
-
   Widget _getAnimatedImage(String animationName){
     return SizedBox(
       height: AppSize.s100,
@@ -173,5 +165,13 @@ class StateRenderer extends StatelessWidget {
       ),
     );
   }
+
+   Widget _getItemColumns(List<Widget> children){
+     return Column(
+       mainAxisAlignment: MainAxisAlignment.center,
+       crossAxisAlignment: CrossAxisAlignment.center,
+       children: children,
+     );
+   }
 
 }

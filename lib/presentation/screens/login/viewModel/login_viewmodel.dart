@@ -14,6 +14,7 @@ LoginViewModelInput , LoginViewModelOutput
   final StreamController _userNameStreamController = StreamController<String>.broadcast();
   final StreamController _passwordStreamController = StreamController<String>.broadcast();
   final StreamController _outAllInputValidStreamController = StreamController<void>.broadcast();
+  StreamController isUserLoggedSuccessfullyStreamController = StreamController<bool>();
 
   // object have last login
   var loginObject = LoginObject("" , "");
@@ -29,6 +30,7 @@ LoginViewModelInput , LoginViewModelOutput
     _userNameStreamController.close();
     _passwordStreamController.close();
     _outAllInputValidStreamController.close();
+    isUserLoggedSuccessfullyStreamController.close();
   }
 
   @override
@@ -46,8 +48,9 @@ LoginViewModelInput , LoginViewModelOutput
         .fold((failure) => {
           inputState.add(ErrorState(StateRendererType.popupErrorState, failure.message))
         },
-        (data) => {
-          inputState.add(ContentState())
+        (data)  {
+          inputState.add(ContentState());
+          isUserLoggedSuccessfullyStreamController.add(true);
         });
 
   }

@@ -5,6 +5,7 @@ import 'package:advanced_flutter/presentation/resources/routes_manager.dart';
 import 'package:advanced_flutter/presentation/resources/values_manager.dart';
 import 'package:advanced_flutter/presentation/screens/login/viewModel/login_viewModel.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import '../../../resources/assets_manager.dart';
 import '../../../resources/strings_manager.dart';
 
@@ -26,8 +27,18 @@ class _LoginViewState extends State<LoginView> {
 
   _bind(){
     _loginViewModel.start();
-    _userNameController.addListener(() => _loginViewModel.setUserName(_userNameController.text));
-    _passwordController.addListener(() => _loginViewModel.setPassword(_passwordController.text));
+    _userNameController.addListener(()
+    => _loginViewModel.setUserName(_userNameController.text));
+    _passwordController.addListener(()
+    => _loginViewModel.setPassword(_passwordController.text));
+   _loginViewModel.isUserLoggedSuccessfullyStreamController.stream.listen((isLoggedIn){
+     if(isLoggedIn){
+       SchedulerBinding.instance.addPostFrameCallback((_) {
+         Navigator.of(context).pushReplacementNamed(Routes.mainRoute);
+       });
+
+     }
+   });
   }
 
   @override
