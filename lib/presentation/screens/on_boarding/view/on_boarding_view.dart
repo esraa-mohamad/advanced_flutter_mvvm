@@ -1,3 +1,4 @@
+import 'package:advanced_flutter/app/app_prefs.dart';
 import 'package:advanced_flutter/presentation/resources/assets_manager.dart';
 import 'package:advanced_flutter/presentation/resources/color_manager.dart';
 import 'package:advanced_flutter/presentation/resources/constants_manager.dart';
@@ -7,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../../app/di.dart';
 import '../../../../domain/model/model.dart';
 import '../../../resources/routes_manager.dart';
 import '../viewModel/onboarding_viewmodel.dart';
@@ -24,8 +26,11 @@ class _OnBoardingViewState extends State<OnBoardingView> {
 
   final OnBoardingViewModel _onBoardingViewModel= OnBoardingViewModel();
 
+  final AppPreferences _appPreferences = instance<AppPreferences>();
+
   // that is mean , relate
   _bind() {
+    _appPreferences.setOnBoardingScreenView();
     _onBoardingViewModel.start();
   }
 

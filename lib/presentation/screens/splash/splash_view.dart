@@ -4,6 +4,8 @@ import 'package:advanced_flutter/presentation/resources/color_manager.dart';
 import 'package:advanced_flutter/presentation/resources/constants_manager.dart';
 import 'package:flutter/material.dart';
 
+import '../../../app/app_prefs.dart';
+import '../../../app/di.dart';
 import '../../resources/routes_manager.dart';
 
 
@@ -18,6 +20,9 @@ class _SplashViewState extends State<SplashView> {
 
   Timer? _timer ;
 
+  final AppPreferences _appPreferences = instance<AppPreferences>();
+
+
   _startDelay(){
     _timer = Timer(
         const Duration(seconds: AppConstants.splashDelay),
@@ -25,8 +30,26 @@ class _SplashViewState extends State<SplashView> {
     );
   }
 
-  _goNext(){
-    Navigator.pushReplacementNamed(context, Routes.onBoardingRoute);
+  _goNext() async{
+
+    _appPreferences.isUserLoggedIn().
+    then((isUserLoggedIn)  {
+      if(isUserLoggedIn){
+        // navigator to main screen
+        Navigator.pushReplacementNamed(context, Routes.mainRoute);
+      }else{
+        _appPreferences.isOnBoardingScreenView().then((isOnBoardingScreenView)  {
+          if(isOnBoardingScreenView){
+            // navigator to login
+            Navigator.pushReplacementNamed(context, Routes.loginRoute);
+          }else{
+            // navigator to on boarding
+            Navigator.pushReplacementNamed(context, Routes.onBoardingRoute);
+          }
+        });
+      }
+    });
+
   }
 
   @override

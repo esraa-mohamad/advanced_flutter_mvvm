@@ -1,10 +1,12 @@
 import 'dart:async';
 
+import 'package:advanced_flutter/app/app_prefs.dart';
 import 'package:advanced_flutter/domain/usecase/login_usecase.dart';
 import 'package:advanced_flutter/presentation/base/base_view_model.dart';
 import 'package:advanced_flutter/presentation/common/state_render/state_renderer_imp.dart';
 import 'package:advanced_flutter/presentation/common/state_render/state_render.dart';
 
+import '../../../../app/di.dart';
 import '../../../common/freezed_data_class.dart';
 
 class LoginViewModel extends BaseViewModel with 
@@ -15,6 +17,7 @@ LoginViewModelInput , LoginViewModelOutput
   final StreamController _passwordStreamController = StreamController<String>.broadcast();
   final StreamController _outAllInputValidStreamController = StreamController<void>.broadcast();
   StreamController isUserLoggedSuccessfullyStreamController = StreamController<bool>();
+  final AppPreferences _appPreferences = instance<AppPreferences>();
 
   // object have last login
   var loginObject = LoginObject("" , "");
@@ -50,6 +53,7 @@ LoginViewModelInput , LoginViewModelOutput
         },
         (data)  {
           inputState.add(ContentState());
+          _appPreferences.setUserLoggedIn();
           isUserLoggedSuccessfullyStreamController.add(true);
         });
 
