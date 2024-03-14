@@ -165,7 +165,7 @@ class _LoginViewState extends State<LoginView> {
                       ),
                       TextButton(
                         onPressed: (){
-                          Navigator.pushReplacementNamed(context, Routes.registerRoute);
+                          Navigator.pushNamed(context, Routes.registerRoute);
                         },
                         child :Text(
                           AppStrings.registerText,

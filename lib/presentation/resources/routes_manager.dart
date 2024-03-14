@@ -3,7 +3,7 @@ import 'package:advanced_flutter/presentation/resources/strings_manager.dart';
 import 'package:flutter/material.dart';
 
 import '../../app/di.dart';
-import '../screens/forget_password/forget_password_view.dart';
+import '../screens/forget_password/view/forget_password_view.dart';
 import '../screens/login/view/login_view.dart';
 import '../screens/main/main_view.dart';
 import '../screens/on_boarding/view/on_boarding_view.dart';
@@ -35,7 +35,8 @@ class RouteGenerator {
       case Routes.registerRoute:
         return MaterialPageRoute(builder: (_) => const RegisterView());
       case Routes.forgotPasswordRoute:
-        return MaterialPageRoute(builder: (_) => const ForgetPasswordView());
+        initForgotPasswordModule();
+        return MaterialPageRoute(builder: (_) => const ForgotPasswordView());
       case Routes.onBoardingRoute:
         return MaterialPageRoute(builder: (_)=> const OnBoardingView());
       case Routes.mainRoute:
