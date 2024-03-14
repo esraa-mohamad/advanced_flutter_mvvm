@@ -16,3 +16,5 @@ class NetworkInfoImplementation implements NetworkInfo {
   Future<bool> get isConnected => _internetConnectionChecker.hasConnection;
 
 }
+
+// 08

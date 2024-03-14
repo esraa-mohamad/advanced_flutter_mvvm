@@ -1,5 +1,4 @@
 import 'package:advanced_flutter/app/constants.dart';
-
 extension NonNullString on String?{
 
   String orEmpty(){
