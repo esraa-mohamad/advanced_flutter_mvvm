@@ -80,6 +80,47 @@ class _AppServicesClient implements AppServicesClient {
     return value;
   }
 
+  @override
+  Future<AuthenticationResponse> register(
+    String email,
+    String password,
+    String userName,
+    String countryMobileCode,
+    String mobilePhone,
+    String profilePicture,
+  ) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = {
+      'email': email,
+      'password': password,
+      'user_name': userName,
+      'country_mobile_code': countryMobileCode,
+      'mobile_phone': mobilePhone,
+      'profile_picture': profilePicture,
+    };
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<AuthenticationResponse>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/customers/register',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = AuthenticationResponse.fromJson(_result.data!);
+    return value;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||
