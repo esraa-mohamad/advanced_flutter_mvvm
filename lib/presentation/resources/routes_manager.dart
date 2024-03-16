@@ -7,7 +7,7 @@ import '../screens/forget_password/view/forget_password_view.dart';
 import '../screens/login/view/login_view.dart';
 import '../screens/main/main_view.dart';
 import '../screens/on_boarding/view/on_boarding_view.dart';
-import '../screens/register/register_view.dart';
+import '../screens/register/view/register_view.dart';
 import '../screens/splash/splash_view.dart';
 import '../screens/store_details/store_details_view.dart';
 
@@ -33,6 +33,7 @@ class RouteGenerator {
         initLoginModule();
         return MaterialPageRoute(builder: (_) => const LoginView());
       case Routes.registerRoute:
+        initRegisterModule();
         return MaterialPageRoute(builder: (_) => const RegisterView());
       case Routes.forgotPasswordRoute:
         initForgotPasswordModule();
