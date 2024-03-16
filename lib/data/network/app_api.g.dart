@@ -13,7 +13,7 @@ class _AppServicesClient implements AppServicesClient {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'https://esraamo.wiremockapi.cloud/';
+    baseUrl ??= 'https://fake-api-sh2l.onrender.com';
   }
 
   final Dio _dio;
@@ -40,7 +40,7 @@ class _AppServicesClient implements AppServicesClient {
     )
             .compose(
               _dio.options,
-              '/customers/login',
+              '/login',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -67,7 +67,7 @@ class _AppServicesClient implements AppServicesClient {
     )
             .compose(
               _dio.options,
-              '/customers/forgetPassword',
+              '/forgetPassword',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -108,7 +108,7 @@ class _AppServicesClient implements AppServicesClient {
     )
             .compose(
               _dio.options,
-              '/customers/register',
+              '/register',
               queryParameters: queryParameters,
               data: _data,
             )

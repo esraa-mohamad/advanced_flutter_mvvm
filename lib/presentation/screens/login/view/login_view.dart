@@ -6,6 +6,7 @@ import 'package:advanced_flutter/presentation/resources/values_manager.dart';
 import 'package:advanced_flutter/presentation/screens/login/viewModel/login_viewModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import '../../../../app/app_prefs.dart';
 import '../../../resources/assets_manager.dart';
 import '../../../resources/strings_manager.dart';
 
@@ -24,6 +25,8 @@ class _LoginViewState extends State<LoginView> {
 
   final TextEditingController  _userNameController = TextEditingController();
   final TextEditingController  _passwordController = TextEditingController();
+  final AppPreferences _appPreferences = instance<AppPreferences>();
+
 
   _bind(){
     _loginViewModel.start();
@@ -34,6 +37,7 @@ class _LoginViewState extends State<LoginView> {
    _loginViewModel.isUserLoggedSuccessfullyStreamController.stream.listen((isLoggedIn){
      if(isLoggedIn){
        SchedulerBinding.instance.addPostFrameCallback((_) {
+         _appPreferences.setUserLoggedIn();
          Navigator.of(context).pushReplacementNamed(Routes.mainRoute);
        });
 

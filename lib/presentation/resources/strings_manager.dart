@@ -15,9 +15,13 @@ class AppStrings {
   static const skip = "Skip";
   static const username = "Username";
   static const password = "Password";
+  static const mobilePhone = "Mobile Phone";
+  static const email = "Email";
+  static const profilePicture = "Profile Picture";
   static const passwordError = "Please enter your password";
   static const usernameError = "Please enter your username";
   static const login = "Login";
+  static const register = "Register";
   static const forgetPassword = "Forget Password";
   static const registerText = "Not a member ? Sign Up";
   static const loading = "Loading...";
@@ -32,4 +36,7 @@ class AppStrings {
   static const String emailInvalid = "Email format is wrong";
   static const String mobilePhoneInvalid = "Mobile phone should be at least 8 digits";
   static const String passwordInvalid = "Password should be at least 6 characters";
+  static const String  alreadyHaveAccount = "Already have an account ? Login";
+  static const String photoGallery = "Photo From Gallery";
+  static const String photoCamera = "Photo From Camera";
 }

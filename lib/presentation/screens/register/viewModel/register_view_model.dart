@@ -19,9 +19,6 @@ class RegisterViewModel extends BaseViewModel
   StreamController emailStreamController = StreamController<String>.broadcast();
   StreamController passwordStreamController =
       StreamController<String>.broadcast();
-
-  // StreamController countryMobileCodeStreamController =
-  //     StreamController<String>.broadcast();
   StreamController mobilePhoneStreamController =
       StreamController<String>.broadcast();
   StreamController profilePictureStreamController =
@@ -29,6 +26,7 @@ class RegisterViewModel extends BaseViewModel
   StreamController areAllInputsValidStreamController = StreamController<void>();
   StreamController isUserRegisterSuccessfullyStreamController =
       StreamController<bool>();
+
   final AppPreferences _appPreferences = instance<AppPreferences>();
 
   final RegisterUseCase _registerUseCase;
@@ -46,7 +44,7 @@ class RegisterViewModel extends BaseViewModel
   // inputs
   @override
   void start() {
-    // TODO: implement start
+    inputState.add(ContentState());
   }
 
   @override
@@ -54,15 +52,16 @@ class RegisterViewModel extends BaseViewModel
     userNameStreamController.close();
     emailStreamController.close();
     passwordStreamController.close();
-    // countryMobileCodeStreamController.close();
     mobilePhoneStreamController.close();
     profilePictureStreamController.close();
     areAllInputsValidStreamController.close();
+    isUserRegisterSuccessfullyStreamController.close();
     super.dispose();
   }
 
   @override
   setUserName(String userName) {
+    userNameInput.add(userName);
     if (_isUserNameValid(userName)) {
       // update register view model
       registerObject = registerObject.copyWith(userName: userName);
@@ -75,6 +74,7 @@ class RegisterViewModel extends BaseViewModel
 
   @override
   setCountryMobileCode(String countryMobileCode) {
+
     if (countryMobileCode.isNotEmpty) {
       // update register view model
       registerObject =
@@ -88,6 +88,7 @@ class RegisterViewModel extends BaseViewModel
 
   @override
   setEmail(String email) {
+    emailInput.add(email);
     if (isEmailValid(email)) {
       // update register view model
       registerObject = registerObject.copyWith(email: email);
@@ -100,6 +101,7 @@ class RegisterViewModel extends BaseViewModel
 
   @override
   setMobilePhone(String mobilePhone) {
+    mobilePhoneInput.add(mobilePhone);
     if (_isMobilePhoneValid(mobilePhone)) {
       // update register view model
       registerObject = registerObject.copyWith(mobilePhone: mobilePhone);
@@ -112,6 +114,7 @@ class RegisterViewModel extends BaseViewModel
 
   @override
   setPassword(String password) {
+    passwordInput.add(password);
     if (_isPasswordValid(password)) {
       // update register view model
       registerObject = registerObject.copyWith(password: password);
@@ -124,6 +127,7 @@ class RegisterViewModel extends BaseViewModel
 
   @override
   setProfilePicture(File profilePicture) {
+    profilePictureInput.add(profilePicture);
     if (profilePicture.path.isNotEmpty) {
       // update register view model
       registerObject =
@@ -152,7 +156,7 @@ class RegisterViewModel extends BaseViewModel
                       StateRendererType.popupErrorState, failure.message))
                 }, (data) {
       inputState.add(ContentState());
-    //  isUserRegisterSuccessfullyStreamController.add(true);
+      isUserRegisterSuccessfullyStreamController.add(true);
     });
   }
 
@@ -220,7 +224,7 @@ class RegisterViewModel extends BaseViewModel
   // private function
 
   bool _isUserNameValid(String userName) {
-    return userName.length >= 8;
+    return userName.length >= 3;
   }
 
   bool _isMobilePhoneValid(String mobilePhone) {
