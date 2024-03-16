@@ -6,8 +6,6 @@ import 'package:advanced_flutter/presentation/base/base_view_model.dart';
 import 'package:advanced_flutter/presentation/common/freezed_data_class.dart';
 import 'package:advanced_flutter/presentation/resources/strings_manager.dart';
 
-import '../../../../app/app_prefs.dart';
-import '../../../../app/di.dart';
 import '../../../../app/functions.dart';
 import '../../../common/state_render/state_render.dart';
 import '../../../common/state_render/state_renderer_imp.dart';
@@ -27,7 +25,6 @@ class RegisterViewModel extends BaseViewModel
   StreamController isUserRegisterSuccessfullyStreamController =
       StreamController<bool>();
 
-  final AppPreferences _appPreferences = instance<AppPreferences>();
 
   final RegisterUseCase _registerUseCase;
 
