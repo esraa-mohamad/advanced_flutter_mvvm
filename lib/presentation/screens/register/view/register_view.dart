@@ -140,7 +140,7 @@ class _RegisterViewState extends State<RegisterView> {
                               _registerViewModel.setCountryMobileCode(country.dialCode ?? Constants.token);
                             },
                             initialSelection: '+20',
-                            favorite: const ['+39','FR' "+966"],
+                            favorite: const ['+20','FR' "+966"],
                             showCountryOnly: true,
                             showOnlyCountryWhenClosed: true,
                             hideMainText: true,

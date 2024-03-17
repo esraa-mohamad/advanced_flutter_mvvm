@@ -32,7 +32,7 @@ class AppStrings {
   static const String invalidEmail = "Invalid Email";
   static const String resetPassword = "Reset Password";
   static const String success = "Success";
-  static const String userNameInvalid = "User name should be at least 8 characters";
+  static const String userNameInvalid = "User name should be at least 3 characters";
   static const String emailInvalid = "Email format is wrong";
   static const String mobilePhoneInvalid = "Mobile phone should be at least 8 digits";
   static const String passwordInvalid = "Password should be at least 6 characters";
