@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import '../../app/di.dart';
 import '../screens/forget_password/view/forget_password_view.dart';
 import '../screens/login/view/login_view.dart';
-import '../screens/main/main_view.dart';
+import '../screens/main/view/main_view.dart';
 import '../screens/on_boarding/view/on_boarding_view.dart';
 import '../screens/register/view/register_view.dart';
 import '../screens/splash/splash_view.dart';
