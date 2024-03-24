@@ -45,3 +45,41 @@ class Authentication{
 
   Authentication({required this.customer , required this.contact});
 }
+
+class Services {
+  int id ;
+  String title ;
+  String image ;
+
+  Services({required this.id , required this.title , required this.image});
+}
+
+class Banners {
+  int id ;
+  String title ;
+  String link ;
+  String image ;
+
+  Banners({required this.id , required this.title , required this.link ,required this.image});
+}
+
+class Stores {
+  int id ;
+  String title ;
+  String image ;
+
+  Stores({required this.id , required this.title , required this.image});
+}
+
+class HomeData {
+  List<Services> services ;
+  List<Banners> banners ;
+  List<Stores> stores ;
+
+  HomeData({required this.services , required this.banners , required this.stores});
+}
+
+class HomeModel {
+  HomeData ? data ;
+  HomeModel(this.data);
+}
