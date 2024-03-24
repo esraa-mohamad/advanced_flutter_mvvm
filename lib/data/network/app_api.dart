@@ -31,4 +31,6 @@ abstract class AppServicesClient {
       @Field("profile_picture") String profilePicture,
       );
 
+  @GET("/home")
+  Future<HomeResponse> getHomeData();
 }
