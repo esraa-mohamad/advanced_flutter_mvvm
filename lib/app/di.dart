@@ -6,9 +6,11 @@ import 'package:advanced_flutter/data/network/network_info.dart';
 import 'package:advanced_flutter/data/repository/repository_impl.dart';
 import 'package:advanced_flutter/domain/repository/repository.dart';
 import 'package:advanced_flutter/domain/usecase/forget_password_usecase.dart';
+import 'package:advanced_flutter/domain/usecase/home_data_usecase.dart';
 import 'package:advanced_flutter/domain/usecase/login_usecase.dart';
 import 'package:advanced_flutter/domain/usecase/register_usecase.dart';
 import 'package:advanced_flutter/presentation/screens/login/viewModel/login_viewModel.dart';
+import 'package:advanced_flutter/presentation/screens/main/pages/home/home_viewModel/home_viewModel.dart';
 import 'package:advanced_flutter/presentation/screens/register/viewModel/register_view_model.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -83,5 +85,14 @@ initRegisterModule() {
         () => RegisterViewModel(instance()));
     instance
         .registerFactory<ImagePicker>(() => ImagePicker());
+  }
+}
+
+initHomeModule() {
+  if (!GetIt.I.isRegistered<HomeDataUseCase>()) {
+    instance
+        .registerFactory<HomeDataUseCase>(() => HomeDataUseCase(instance()));
+    instance.registerFactory<HomeViewModel>(
+            () => HomeViewModel(instance()));
   }
 }
