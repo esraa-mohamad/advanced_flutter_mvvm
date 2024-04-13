@@ -1,4 +1,6 @@
 import 'package:advanced_flutter/app/di.dart';
+import 'package:advanced_flutter/presentation/common/state_render/state_renderer_imp.dart';
+import 'package:advanced_flutter/presentation/resources/values_manager.dart';
 import 'package:advanced_flutter/presentation/screens/main/pages/home/home_viewModel/home_viewModel.dart';
 import 'package:flutter/material.dart';
 
@@ -26,11 +28,64 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text(
-        AppStrings.home
-      ),
+    return  Center(
+      child: SingleChildScrollView(
+        child: StreamBuilder<FlowState>(
+            stream: _homeViewModel.outState,
+            builder: (context , snapshot){
+              return snapshot.data?.getScreenWidget(context , _getContentView(), (){
+                _homeViewModel.start();
+              }) ??
+                  _getContentView() ;
+            }
+        ),
+      )
     );
+  }
+
+  // *** all content home view ***
+ Widget _getContentView (){
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _getBannersCarousel(),
+        _getSections(AppStrings.services),
+        _getServices(),
+        _getSections(AppStrings.stores),
+        _getStores(),
+      ],
+    );
+  }
+
+  // *** banners ***
+  Widget _getBannersCarousel(){
+    return Center();
+  }
+
+  // *** sections ***
+  Widget _getSections(String title){
+    return  Padding(
+        padding: const EdgeInsets.only(
+          top: AppPadding.p12,
+          left: AppPadding.p12,
+          right: AppPadding.p12,
+          bottom: AppPadding.p4,
+        ),
+        child: Text(
+          title ,
+          style: Theme.of(context).textTheme.labelSmall,
+        ),
+    );
+  }
+
+  // *** services ***
+  Widget _getServices(){
+    return Center();
+  }
+
+  // *** stores ***
+  Widget _getStores(){
+    return Center();
   }
 
   @override
