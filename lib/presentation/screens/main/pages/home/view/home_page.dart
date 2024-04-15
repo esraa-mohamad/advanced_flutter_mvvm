@@ -1,9 +1,15 @@
+import 'dart:js_interop';
+
 import 'package:advanced_flutter/app/di.dart';
 import 'package:advanced_flutter/presentation/common/state_render/state_renderer_imp.dart';
+import 'package:advanced_flutter/presentation/resources/color_manager.dart';
 import 'package:advanced_flutter/presentation/resources/values_manager.dart';
 import 'package:advanced_flutter/presentation/screens/main/pages/home/home_viewModel/home_viewModel.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../../domain/model/model.dart';
 import '../../../../../resources/strings_manager.dart';
 
 class HomePage extends StatefulWidget {
@@ -44,7 +50,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   // *** all content home view ***
- Widget _getContentView (){
+  Widget _getContentView (){
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -57,11 +63,50 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  // *** banners ***
+  // *** list banners ***
   Widget _getBannersCarousel(){
-    return Center();
+    return StreamBuilder<List<Banners>>(
+        stream: _homeViewModel.outputBanners,
+        builder: (context , snapshot){
+          return _getBannersWidget(snapshot.data);
+        }
+    );
   }
 
+  // *** banners data
+  Widget _getBannersWidget(List<Banners>? banners){
+    if(banners != null){
+      return CarouselSlider(
+          items: banners.map((banner) =>
+              SizedBox(
+                width: double.infinity,
+                child: Card(
+                  elevation: AppSize.s1_5,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(AppSize.s12),
+                    side: BorderSide(
+                      color: ColorManager.primary,
+                      width: AppSize.s1
+                    )
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(AppSize.s12),
+                    child: Image.network(banner.image,fit:BoxFit.cover,),
+                  ),
+                ),
+              )
+          ).toList(),
+          options: CarouselOptions(
+            height: AppSize.s90,
+            autoPlay: true,
+            enableInfiniteScroll: true,
+            enlargeCenterPage: true
+          )
+      );
+    }else{
+      return Container();
+    }
+  }
   // *** sections ***
   Widget _getSections(String title){
     return  Padding(
