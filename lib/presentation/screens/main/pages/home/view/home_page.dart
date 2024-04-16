@@ -96,7 +96,7 @@ class _HomePageState extends State<HomePage> {
               )
           ).toList(),
           options: CarouselOptions(
-            height: AppSize.s90,
+            height: AppSize.s190,
             autoPlay: true,
             enableInfiniteScroll: true,
             enlargeCenterPage: true
@@ -142,7 +142,7 @@ class _HomePageState extends State<HomePage> {
             right: AppPadding.p12
           ),
           child: Container(
-            height: AppSize.s140,
+            height: AppSize.s160,
             margin: const EdgeInsets.symmetric(vertical: AppMargin.m12),
             child: ListView(
               scrollDirection: Axis.horizontal,
@@ -152,7 +152,7 @@ class _HomePageState extends State<HomePage> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(AppSize.s12),
                         side: BorderSide(
-                            color: ColorManager.primary,
+                            color: ColorManager.white,
                             width: AppSize.s1
                         )
                     ),
@@ -163,8 +163,8 @@ class _HomePageState extends State<HomePage> {
                           child: Image.network(
                             service.image,
                             fit:BoxFit.cover,
-                            height: AppSize.s100,
-                            width: AppSize.s100,
+                            height: AppSize.s120,
+                            width: AppSize.s120,
                           ),
                         ),
                         Padding(

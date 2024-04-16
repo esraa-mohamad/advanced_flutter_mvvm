@@ -1,13 +1,14 @@
 import 'dart:async';
 
 import 'package:advanced_flutter/presentation/common/state_render/state_renderer_imp.dart';
+import 'package:rxdart/rxdart.dart';
 
 abstract class BaseViewModel extends BaseViewModelInputs
     with BaseViewModelOutputs
 {
   // shared variables and function that will be used through any view model
 
-  final StreamController _inputStreamController = StreamController<FlowState>.broadcast();
+  final StreamController _inputStreamController = BehaviorSubject<FlowState>();
 
   @override
   Sink get inputState => _inputStreamController.sink;
