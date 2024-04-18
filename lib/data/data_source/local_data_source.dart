@@ -11,6 +11,10 @@ abstract class LocalDataSource {
 
   Future<void> saveHomeCache(HomeResponse homeResponse);
 
+  void clearCache();
+
+  void removeFromCache(String key);
+
 }
 
 class LocalDataSourceImp implements LocalDataSource {
@@ -36,6 +40,16 @@ class LocalDataSourceImp implements LocalDataSource {
   @override
   Future<void> saveHomeCache(HomeResponse homeResponse) async{
     cacheMap[CACHE_HOME_KEY] =  CachedItem(homeResponse);
+  }
+
+  @override
+  void clearCache() {
+    cacheMap.clear();
+  }
+
+  @override
+  void removeFromCache(String key) {
+    cacheMap.remove(key);
   }
 
 }
