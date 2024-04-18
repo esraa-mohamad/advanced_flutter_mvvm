@@ -9,7 +9,7 @@ import '../screens/main/view/main_view.dart';
 import '../screens/on_boarding/view/on_boarding_view.dart';
 import '../screens/register/view/register_view.dart';
 import '../screens/splash/splash_view.dart';
-import '../screens/store_details/store_details_view.dart';
+import '../screens/store_details/view/store_details_view.dart';
 
 
 
@@ -44,7 +44,8 @@ class RouteGenerator {
         initHomeModule();
         return MaterialPageRoute(builder: (_) => const MainView());
       case Routes.storeDetailsRoute:
-        return MaterialPageRoute(builder: (_) => const StoreDetailsView());
+        initStoreDetailsModule();
+        return MaterialPageRoute(builder: (_) => const StoresDetailsView());
       default:
         return unDefinedRoute();
     }

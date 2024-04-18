@@ -8,7 +8,7 @@ import 'package:advanced_flutter/data/network/requests.dart';
 import 'package:advanced_flutter/domain/model/model.dart';
 import 'package:advanced_flutter/domain/repository/repository.dart';
 import 'package:dartz/dartz.dart';
-//
+
 class RepositoryImpl implements Repository{
 
   final LocalDataSource _localDataSource;
@@ -145,6 +145,35 @@ class RepositoryImpl implements Repository{
       }
     }
 
+  }
+
+  @override
+  Future<Either<Failure, StoreDetails>> getStoreDetails() async {
+    try {
+      // get data from cache
+
+      final response = await _localDataSource.getStoreDetails();
+      return Right(response.toDomain());
+    } catch (cacheError) {
+      if (await _networkInfo.isConnected) {
+        try {
+          final response = await _remoteDataSource.getStoreDetails();
+          if (response.status == ApiInternalStatus.SUCCESS) {
+            _localDataSource.saveStoreDetailsToCache(response);
+            return Right(response.toDomain());
+          } else {
+            return Left(Failure(
+                code:  response.status ?? ResponseCode.DEFAULT ,
+                message: response.message ?? ResponseMessage.DEFAULT
+            ));
+          }
+        } catch (error) {
+          return Left(ErrorHandler.handle(error).failure);
+        }
+      } else {
+        return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
+      }
+    }
   }
 
 }

@@ -71,16 +71,40 @@ extension StoresResponseMapper on StoresResponse? {
 
 extension HomeResponseMapper on HomeResponse? {
   HomeModel toDomain() {
-    List<Services> services =
-    (this?.data?.services?.map((servicesResponse) => servicesResponse.toDomain()) ??
-        const Iterable.empty()).cast<Services>().toList();
-    List<Banners> banners =
-    (this?.data?.banners?.map((bannersResponse) => bannersResponse.toDomain()) ??
-        const Iterable.empty()).cast<Banners>().toList();
-    List<Stores> stores =
-    (this?.data?.stores?.map((storesResponse) => storesResponse.toDomain()) ??
-        const Iterable.empty()).cast<Stores>().toList();
+    List<Services> services = (this
+                ?.data
+                ?.services
+                ?.map((servicesResponse) => servicesResponse.toDomain()) ??
+            const Iterable.empty())
+        .cast<Services>()
+        .toList();
+    List<Banners> banners = (this
+                ?.data
+                ?.banners
+                ?.map((bannersResponse) => bannersResponse.toDomain()) ??
+            const Iterable.empty())
+        .cast<Banners>()
+        .toList();
+    List<Stores> stores = (this
+                ?.data
+                ?.stores
+                ?.map((storesResponse) => storesResponse.toDomain()) ??
+            const Iterable.empty())
+        .cast<Stores>()
+        .toList();
     var data = HomeData(services: services, banners: banners, stores: stores);
     return HomeModel(data);
+  }
+}
+
+extension StoreDetailsResponseMapper on StoreDetailsResponse? {
+  StoreDetails toDomain() {
+    return StoreDetails(
+        this?.id?.orZero() ?? Constants.zero,
+        this?.title?.orEmpty() ?? Constants.empty,
+        this?.image?.orEmpty() ?? Constants.empty,
+        this?.details?.orEmpty() ?? Constants.empty,
+        this?.services?.orEmpty() ?? Constants.empty,
+        this?.about?.orEmpty() ?? Constants.empty);
   }
 }

@@ -3,7 +3,7 @@ import 'package:advanced_flutter/domain/model/model.dart';
 import 'package:dartz/dartz.dart';
 import '../../data/network/failure.dart';
 
-//05
+
 abstract class Repository {
 
   Future<Either<Failure,Authentication>> login(LoginRequests loginRequests) ;
@@ -13,4 +13,6 @@ abstract class Repository {
   Future<Either<Failure,Authentication>> register(RegisterRequests registerRequests) ;
 
   Future<Either<Failure,HomeModel>> getHomeData() ;
+
+  Future<Either<Failure, StoreDetails>> getStoreDetails();
 }

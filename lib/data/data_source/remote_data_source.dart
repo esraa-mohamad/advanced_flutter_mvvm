@@ -11,6 +11,8 @@ abstract class RemoteDataSource {
   Future<AuthenticationResponse> register(RegisterRequests registerRequests);
 
   Future<HomeResponse> getHomeData();
+
+  Future<StoreDetailsResponse> getStoreDetails();
 }
 
 class RemoteDataSourceImplementation implements RemoteDataSource {
@@ -45,5 +47,10 @@ class RemoteDataSourceImplementation implements RemoteDataSource {
   @override
   Future<HomeResponse> getHomeData() async{
     return await _appServicesClient.getHomeData();
+  }
+
+  @override
+  Future<StoreDetailsResponse> getStoreDetails() async {
+    return await _appServicesClient.getStoreDetails();
   }
 }
