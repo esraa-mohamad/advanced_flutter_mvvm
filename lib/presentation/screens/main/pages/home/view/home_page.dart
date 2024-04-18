@@ -152,7 +152,7 @@ class _HomePageState extends State<HomePage> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(AppSize.s12),
                         side: BorderSide(
-                            color: ColorManager.white,
+                            color: ColorManager.primary,
                             width: AppSize.s1
                         )
                     ),

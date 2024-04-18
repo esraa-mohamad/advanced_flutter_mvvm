@@ -112,6 +112,7 @@ class RepositoryImpl implements Repository{
           // success
           // either right
           // return data
+          // save home response to cache
           return Right(response.toDomain());
         }else{
           // failure
