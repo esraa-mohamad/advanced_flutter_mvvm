@@ -12,6 +12,11 @@ class ImageAssets
   static const String leftArrowIc="$imagePath/left_arrow_ic.svg";
   static const String rightArrowIc="$imagePath/right_arrow_ic.svg";
   static const String photoCamera="$imagePath/photo_camera_ic.svg";
+  static const String changeLanguage="$imagePath/change_lang_ic.svg";
+  static const String contactUs="$imagePath/contact_us_ic.svg";
+  static const String inviteFriends="$imagePath/invite_friends_ic.svg";
+  static const String logout="$imagePath/logout_ic.svg";
+  static const String rightArrowSettings="$imagePath/settings_right_arrow_ic.svg";
 
 }
 

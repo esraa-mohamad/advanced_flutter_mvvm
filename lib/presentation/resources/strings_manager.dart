@@ -50,4 +50,9 @@ class AppStrings {
   static const String details = "Details";
   static const String about = "About Store";
   static const String storeDetails = "Store details";
+
+  static const String changeLanguage = "Change Language";
+  static const String contactUs = "Contact Us";
+  static const String inviteFriends = "Invite Friends";
+  static const String logout = "Logout";
 }
