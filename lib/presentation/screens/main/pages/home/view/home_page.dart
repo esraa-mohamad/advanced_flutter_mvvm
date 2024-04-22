@@ -6,6 +6,7 @@ import 'package:advanced_flutter/presentation/resources/routes_manager.dart';
 import 'package:advanced_flutter/presentation/resources/values_manager.dart';
 import 'package:advanced_flutter/presentation/screens/main/pages/home/home_viewModel/home_viewModel.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../domain/model/model.dart';
@@ -54,9 +55,9 @@ class _HomePageState extends State<HomePage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _getBannersCarousel(),
-        _getSections(AppStrings.services),
+        _getSections(AppStrings.services.tr()),
         _getServices(),
-        _getSections(AppStrings.stores),
+        _getSections(AppStrings.stores.tr()),
         _getStores(),
       ],
     );

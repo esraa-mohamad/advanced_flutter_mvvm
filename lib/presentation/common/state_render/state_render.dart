@@ -3,6 +3,7 @@ import 'package:advanced_flutter/presentation/resources/font_manager.dart';
 import 'package:advanced_flutter/presentation/resources/strings_manager.dart';
 import 'package:advanced_flutter/presentation/resources/style_manager.dart';
 import 'package:advanced_flutter/presentation/resources/values_manager.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -59,14 +60,14 @@ class StateRenderer extends StatelessWidget {
         return _getPopupDialog(context , [
           _getAnimatedImage(JsonAssets.error),
           _getMessage(message),
-          _getRetryButton(AppStrings.ok, context),
+          _getRetryButton(AppStrings.ok.tr(), context),
         ]);
       case StateRendererType.popupSuccessState :
         return _getPopupDialog(context , [
           _getAnimatedImage(JsonAssets.success),
           _getMessage(title),
           _getMessage(message),
-          _getRetryButton(AppStrings.ok, context),
+          _getRetryButton(AppStrings.ok.tr(), context),
         ]);
       case StateRendererType.fullScreenLoadingState:
         return _getItemColumns([
@@ -77,7 +78,7 @@ class StateRenderer extends StatelessWidget {
         return _getItemColumns([
           _getAnimatedImage(JsonAssets.error),
           _getMessage(message),
-          _getRetryButton(AppStrings.retryAgain, context),
+          _getRetryButton(AppStrings.retryAgain.tr(), context),
         ]);
       case StateRendererType.fullScreenEmptyState:
         return _getItemColumns([

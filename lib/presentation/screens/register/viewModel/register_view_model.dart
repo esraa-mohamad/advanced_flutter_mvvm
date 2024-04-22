@@ -5,6 +5,7 @@ import 'package:advanced_flutter/domain/usecase/register_usecase.dart';
 import 'package:advanced_flutter/presentation/base/base_view_model.dart';
 import 'package:advanced_flutter/presentation/common/freezed_data_class.dart';
 import 'package:advanced_flutter/presentation/resources/strings_manager.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import '../../../../app/functions.dart';
 import '../../../common/state_render/state_render.dart';
@@ -182,7 +183,7 @@ class RegisterViewModel extends BaseViewModel
 
   @override
   Stream<String?> get userNameErrorOutput => userNameOutput
-      .map((isUserName) => isUserName ? null : AppStrings.userNameInvalid);
+      .map((isUserName) => isUserName ? null : AppStrings.userNameInvalid.tr());
 
   @override
   Stream<bool> get emailOutput =>
@@ -190,7 +191,7 @@ class RegisterViewModel extends BaseViewModel
 
   @override
   Stream<String?> get emailErrorOutput =>
-      emailOutput.map((isEmail) => isEmail ? null : AppStrings.emailInvalid);
+      emailOutput.map((isEmail) => isEmail ? null : AppStrings.emailInvalid.tr());
 
   @override
   Stream<bool> get mobilePhoneOutput => mobilePhoneStreamController.stream
@@ -199,7 +200,7 @@ class RegisterViewModel extends BaseViewModel
   @override
   Stream<String?> get mobilePhoneErrorOutput =>
       mobilePhoneOutput.map((isMobilePhoneInvalid) =>
-          isMobilePhoneInvalid ? null : AppStrings.mobilePhoneInvalid);
+          isMobilePhoneInvalid ? null : AppStrings.mobilePhoneInvalid.tr());
 
   @override
   Stream<bool> get passwordOutput => passwordStreamController.stream
@@ -208,7 +209,7 @@ class RegisterViewModel extends BaseViewModel
   @override
   Stream<String?> get passwordErrorOutput =>
       passwordOutput.map((isPasswordInvalid) =>
-          isPasswordInvalid ? null : AppStrings.passwordInvalid);
+          isPasswordInvalid ? null : AppStrings.passwordInvalid.tr());
 
   @override
   Stream<File> get profilePictureOutput =>

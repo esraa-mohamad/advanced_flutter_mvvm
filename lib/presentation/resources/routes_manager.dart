@@ -1,5 +1,6 @@
 
 import 'package:advanced_flutter/presentation/resources/strings_manager.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../app/di.dart';
@@ -54,13 +55,13 @@ class RouteGenerator {
     return MaterialPageRoute(
         builder: (_) => Scaffold(
           appBar: AppBar(
-            title: const Text(
-                AppStrings.noRouteFound,
+            title:  Text(
+                AppStrings.noRouteFound.tr(),
             ),
           ),
-          body: const Center(
+          body:  Center(
               child: Text(
-                  AppStrings.noRouteFound,
+                  AppStrings.noRouteFound.tr(),
               ),
           ),
         ));

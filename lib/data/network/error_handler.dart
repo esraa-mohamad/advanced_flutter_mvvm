@@ -1,5 +1,6 @@
 import 'package:advanced_flutter/data/network/failure.dart';
 import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import '../../presentation/resources/strings_manager.dart';
 
@@ -71,33 +72,33 @@ extension DataSourceExtension on DataSource {
   {
     switch(this){
       case DataSource.SUCCESS:
-        return Failure(code: ResponseCode.SUCCESS, message:ResponseMessage.SUCCESS);
+        return Failure(code: ResponseCode.SUCCESS, message:ResponseMessage.SUCCESS.tr());
       case DataSource.NO_CONTENT:
-        return Failure(code: ResponseCode.NO_CONTENT, message:ResponseMessage.NO_CONTENT);
+        return Failure(code: ResponseCode.NO_CONTENT, message:ResponseMessage.NO_CONTENT.tr());
       case DataSource.BAD_REQUEST:
-        return Failure(code: ResponseCode.BAD_REQUEST, message:ResponseMessage.BAD_REQUEST);
+        return Failure(code: ResponseCode.BAD_REQUEST, message:ResponseMessage.BAD_REQUEST.tr());
       case DataSource.FORBIDDEN:
-        return Failure(code: ResponseCode.FORBIDDEN, message:ResponseMessage.FORBIDDEN);
+        return Failure(code: ResponseCode.FORBIDDEN, message:ResponseMessage.FORBIDDEN.tr());
       case DataSource.UNAUTHORIZED:
-        return Failure(code: ResponseCode.UNAUTHORIZED, message:ResponseMessage.UNAUTHORIZED);
+        return Failure(code: ResponseCode.UNAUTHORIZED, message:ResponseMessage.UNAUTHORIZED.tr());
       case DataSource.NOT_FOUND:
-        return Failure(code: ResponseCode.NOT_FOUND, message:ResponseMessage.NOT_FOUND);
+        return Failure(code: ResponseCode.NOT_FOUND, message:ResponseMessage.NOT_FOUND.tr());
       case DataSource.INTERNET_SERVER_ERROR:
-        return Failure(code: ResponseCode.INTERNET_SERVER_ERROR, message:ResponseMessage.INTERNET_SERVER_ERROR);
+        return Failure(code: ResponseCode.INTERNET_SERVER_ERROR, message:ResponseMessage.INTERNET_SERVER_ERROR.tr());
       case DataSource.CONNECT_TIMEOUT:
-        return Failure(code: ResponseCode.CONNECT_TIMEOUT, message:ResponseMessage.CONNECT_TIMEOUT);
+        return Failure(code: ResponseCode.CONNECT_TIMEOUT, message:ResponseMessage.CONNECT_TIMEOUT.tr());
       case DataSource.CANCEL:
-        return Failure(code: ResponseCode.CANCEL, message:ResponseMessage.CANCEL);
+        return Failure(code: ResponseCode.CANCEL, message:ResponseMessage.CANCEL.tr());
       case DataSource.RECEIVE_TIMEOUT:
-        return Failure(code: ResponseCode.RECEIVE_TIMEOUT, message:ResponseMessage.RECEIVE_TIMEOUT);
+        return Failure(code: ResponseCode.RECEIVE_TIMEOUT, message:ResponseMessage.RECEIVE_TIMEOUT.tr());
       case DataSource.SEND_TIMEOUT:
-        return Failure(code: ResponseCode.SEND_TIMEOUT, message:ResponseMessage.SEND_TIMEOUT);
+        return Failure(code: ResponseCode.SEND_TIMEOUT, message:ResponseMessage.SEND_TIMEOUT.tr());
       case DataSource.CASH_ERROR:
-        return Failure(code: ResponseCode.CASH_ERROR, message:ResponseMessage.CASH_ERROR);
+        return Failure(code: ResponseCode.CASH_ERROR, message:ResponseMessage.CASH_ERROR.tr());
       case DataSource.NO_INTERNET_CONNECTION:
-        return Failure(code: ResponseCode.NO_INTERNET_CONNECTION, message:ResponseMessage.NO_INTERNET_CONNECTION);
+        return Failure(code: ResponseCode.NO_INTERNET_CONNECTION, message:ResponseMessage.NO_INTERNET_CONNECTION.tr());
       case DataSource.DEFAULT:
-        return Failure(code: ResponseCode.DEFAULT, message:ResponseMessage.DEFAULT);
+        return Failure(code: ResponseCode.DEFAULT, message:ResponseMessage.DEFAULT.tr());
     }
   }
 }

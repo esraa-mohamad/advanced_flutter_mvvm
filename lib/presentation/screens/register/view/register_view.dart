@@ -4,6 +4,7 @@ import 'package:advanced_flutter/presentation/resources/color_manager.dart';
 import 'package:advanced_flutter/presentation/resources/values_manager.dart';
 import 'package:advanced_flutter/presentation/screens/register/viewModel/register_view_model.dart';
 import 'package:country_code_picker/country_code_picker.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -114,8 +115,8 @@ class _RegisterViewState extends State<RegisterView> {
                         keyboardType:  TextInputType.text,
                         controller: _userNameEditingController,
                         decoration: InputDecoration(
-                          hintText: AppStrings.username,
-                          labelText: AppStrings.username ,
+                          hintText: AppStrings.username.tr(),
+                          labelText: AppStrings.username.tr() ,
                           errorText: (snapshot.data)
                         ),
                       );
@@ -156,8 +157,8 @@ class _RegisterViewState extends State<RegisterView> {
                                 keyboardType:  TextInputType.phone,
                                 controller: _mobilePhoneEditingController,
                                 decoration: InputDecoration(
-                                    hintText: AppStrings.mobilePhone,
-                                    labelText: AppStrings.mobilePhone ,
+                                    hintText: AppStrings.mobilePhone.tr(),
+                                    labelText: AppStrings.mobilePhone.tr() ,
                                     errorText: (snapshot.data)
                                 ),
                               );
@@ -182,8 +183,8 @@ class _RegisterViewState extends State<RegisterView> {
                         keyboardType:  TextInputType.emailAddress,
                         controller: _emailEditingController,
                         decoration: InputDecoration(
-                            hintText: AppStrings.email,
-                            labelText: AppStrings.email ,
+                            hintText: AppStrings.email.tr(),
+                            labelText: AppStrings.email.tr() ,
                             errorText: (snapshot.data)
                         ),
                       );
@@ -204,8 +205,8 @@ class _RegisterViewState extends State<RegisterView> {
                         keyboardType:  TextInputType.visiblePassword,
                         controller: _passwordEditingController,
                         decoration: InputDecoration(
-                          hintText: AppStrings.password,
-                          labelText: AppStrings.password ,
+                          hintText: AppStrings.password.tr(),
+                          labelText: AppStrings.password.tr(),
                           errorText: (snapshot.data)
                         ),
                       );
@@ -252,8 +253,8 @@ class _RegisterViewState extends State<RegisterView> {
                           onPressed: (snapshot.data ?? false)
                               ?(){_registerViewModel.register();}
                               : null,
-                          child: const Text(
-                            AppStrings.register,
+                          child:  Text(
+                            AppStrings.register.tr(),
                           ),
                         ),
                       );
@@ -273,7 +274,7 @@ class _RegisterViewState extends State<RegisterView> {
                       Navigator.of(context).pop();
                     },
                     child :Text(
-                      AppStrings.alreadyHaveAccount,
+                      AppStrings.alreadyHaveAccount.tr(),
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
                   ),
@@ -291,9 +292,9 @@ class _RegisterViewState extends State<RegisterView> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Flexible(
+           Flexible(
               child:Text(
-                  AppStrings.profilePicture
+                  AppStrings.profilePicture.tr()
               ),
           ),
           Flexible(
@@ -322,7 +323,7 @@ class _RegisterViewState extends State<RegisterView> {
                   ListTile(
                     trailing: const Icon(Icons.arrow_forward),
                     leading: const Icon(Icons.camera_front),
-                    title: const Text(AppStrings.photoGallery),
+                    title:  Text(AppStrings.photoGallery.tr()),
                     onTap: (){
                       _photoFromGallery();
                       Navigator.of(context).pop();
@@ -331,7 +332,7 @@ class _RegisterViewState extends State<RegisterView> {
                   ListTile(
                     trailing: const Icon(Icons.arrow_forward),
                     leading: const Icon(Icons.camera_alt),
-                    title: const Text(AppStrings.photoCamera),
+                    title:  Text(AppStrings.photoCamera.tr()),
                     onTap: (){
                       _photoFromCamera();
                       Navigator.of(context).pop();
