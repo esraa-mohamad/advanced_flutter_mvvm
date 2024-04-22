@@ -99,6 +99,8 @@ flutter:
     - assets/images/invite_friends_ic.svg
     - assets/images/logout_ic.svg
     - assets/images/settings_right_arrow_ic.svg
+    - assets/translations/ar-SA.json
+    - assets/translations/en-US.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
