@@ -12,6 +12,8 @@
   "invalid_password": "password is wrong",
   "username_hint": "UserName",
   "password_hint": "Password",
+  "password_error" : "Please enter your password",
+  "username_error" : "Please enter your email",
   "login_button": "Login",
   "forgot_password_text": "Forgot Password",
   "register_text": "Not a member ? Sign up",
@@ -22,6 +24,7 @@
   "invalid_user_name": "Invalid User Name",
   "invalid_mobile_number": "Invalid Mobile Number",
   "invalid_email": "Invalid Email",
+  "email_error_format": "Invalid Email",
   "register": "Register",
   "already_have_account": "Already have an account? login",
   "upload_profile_pictuSearchre": "profile picture",
@@ -55,5 +58,8 @@
   "contact_us": "Contact Us",
   "invite_your_friends": "Invite Your Friends",
   "logout": "Logout",
-  "reset_password": "Reset Password"
+  "reset_password": "Reset Password",
+  "email_hint_message": "User name should be at least 3 characters",
+  "mobile_hint_message": "Mobile phone should be at least 8 digits",
+  "password_hint_message": "Password should be at least 6 characters"
 }
